@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
 
   checkTime(message:Message){
     let minute = message.date.getMinutes();
-    if( minute> this.lastMinute){
+    if( minute != this.lastMinute){
       this.lastMinute = minute;
       this.messages = [];
     }
