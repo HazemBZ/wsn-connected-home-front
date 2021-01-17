@@ -150,4 +150,13 @@ export class HomeComponent implements OnInit {
     this.createSvg()
     this.drawScatter();
   }
+
+  public open(){
+    this.socket.send("OPEN");
+  }
+
+  public close(){
+    this.socket.send("CLOSE");
+  }
+
 }
