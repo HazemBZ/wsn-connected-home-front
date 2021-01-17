@@ -30,8 +30,11 @@ export class BulbPageComponent implements OnInit {
 
   public toggle(){
     this.loading = true;
-    setTimeout(()=> this.loading = false, 1000)
-    if(this.opened) this.close()
-    else this.open()
+    setTimeout(()=>{
+      this.loading = false;
+      if(this.opened) this.close();
+      else this.open();
+    }, 1000)
+
   }
 }

@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       this.save(event.data)
     }
 
-    this.createSvg();
+    this.createSvg(); // empty svg to counter empty content rendering
     // this.drawScatter();
     setInterval(()=>{this.redraw()},1000)
   }
