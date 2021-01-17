@@ -1,0 +1,32 @@
+<div class="tabs is-toggle is-fullwidth is-large">
+  <ul>
+    <li class="is-active">
+      <a>
+        <span class="icon"><fa-icon class="active" [icon]="temp"></fa-icon></span>
+        <span>Temperature</span>
+      </a>
+    </li>
+    <li routerLink="/bulb">
+      <a>
+        <span class="icon"><fa-icon [icon]="bulb"></fa-icon></span>
+        <span>Bulb</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+<div class="content-holder">
+
+  <h4>{{messages[0]?.date.toISOString()}}</h4>
+  <figure id="scatter"></figure>
+  <div class="controls">
+    <button class="button is-warning" (click)="redraw()">Force Redraw</button>
+  </div>
+</div>
+  <!-- <div class="message">
+  <p *ngFor="let message of messages; let i = index;">
+    Topic: {{message.topic}}| Data:{{message.data}}| Date: {{message.date | date:'yyyy-MM-dd HH:mm'}}
+    Topic: {{message.topic}}| Data:{{message.data}}| Date: {{message.date.toDateString()}}
+  </p>
+</div> -->

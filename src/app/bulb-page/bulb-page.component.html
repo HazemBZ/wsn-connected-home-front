@@ -1,0 +1,28 @@
+<div class="tabs is-toggle is-fullwidth is-large" >
+  <ul>
+    <li  routerLink="/home">
+      <a>
+        <span class="icon"><fa-icon [icon]="temp"></fa-icon></span>
+        <span>Temperature</span>
+      </a>
+    </li>
+    <li class="is-active">
+      <a>
+        <span class="icon"><fa-icon [icon]="bulb" class="active"></fa-icon></span>
+        <span>Bulb</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- <h2>Bulb tools</h2> -->
+<div class="content-holder">
+
+  <div>
+    <img class="bulb-image" [src]="opened?'/assets/on.jpg':'/assets/off.jpg'" alt="">
+  </div>
+  <div class="controls">
+    <button class="button" [class.is-loading]="loading" [class]="opened?'is-danger':'is-primary'" (click)="toggle()">{{opened?'Close':'Open'}}</button>
+  </div>
+
+</div>

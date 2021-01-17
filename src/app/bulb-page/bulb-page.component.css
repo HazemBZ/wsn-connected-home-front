@@ -1,0 +1,33 @@
+.bulb-image{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  width: 350px;
+  height: 300px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 50%;
+  max-width: 400px;
+  margin: 50px auto;
+
+}
+
+.button {
+  /* margin-right: 50px; */
+  width: 100%;
+}
+
+.active {
+  color:#ffdb4a;
+}
+
+.content-holder {
+  width: 80%;
+  height: 50%;
+  margin: 150px auto;
+}
