@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 import { schemeBrBG } from 'd3';
+import { CommunicationService } from '../communication.service';
 import { Message } from '../models/message.model';
+import * as icons from '@fortawesome/free-solid-svg-icons';
 
-const ENDPOINT = "ws://192.168.1.13:8000/";
 const MAX_QEUEU = 60;
 
 
@@ -13,7 +14,9 @@ const MAX_QEUEU = 60;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public socket = new WebSocket(ENDPOINT);
+  public bulb = icons.faLightbulb;
+  public temp = icons.faTemperatureHigh;
+
   // public messages:string[] = [];
   public dates = [];
   public messages: Message[] = [];
@@ -27,16 +30,16 @@ export class HomeComponent implements OnInit {
   public lastMonth = 0;
   public lastYeat = 0;
 
-  constructor() { }
+  constructor(private comService:CommunicationService) { }
 
   ngOnInit(): void {
-    this.socket.onopen = (event)=>{
+    this.comService.socket.onopen = (event)=>{
       console.log("Connection established")
-      this.socket.send("Hello from angular client");
+      this.comService.socket.send("Hello from angular client");
       this.send("Eat bananas")
     }
 
-    this.socket.onmessage = (event)=>{
+    this.comService.socket.onmessage = (event)=>{
       console.log(`[message] received from server: ${event.data}`);
       this.save(event.data)
     }
@@ -48,7 +51,7 @@ export class HomeComponent implements OnInit {
 
   send(message){
     console.log(`sending ${message}`)
-    this.socket.send(`From angular ${message}`)
+    this.comService.socket.send(`From angular ${message}`)
 
   }
   save(message){
@@ -151,12 +154,6 @@ export class HomeComponent implements OnInit {
     this.drawScatter();
   }
 
-  public open(){
-    this.socket.send("OPEN");
-  }
 
-  public close(){
-    this.socket.send("CLOSE");
-  }
 
 }
