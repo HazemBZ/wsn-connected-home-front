@@ -2,7 +2,7 @@
   <ul>
     <li class="is-active">
       <a>
-        <span class="icon"><fa-icon [icon]="temp"></fa-icon></span>
+        <span class="icon"><fa-icon class="active" [icon]="temp"></fa-icon></span>
         <span>Temperature</span>
       </a>
     </li>
@@ -16,12 +16,15 @@
 </div>
 
 
-<h4>{{messages[0]?.date.toISOString()}}</h4>
-<figure id="scatter"></figure>
-<div class="controls">
-  <button class="button is-warning" (click)="redraw()">Force Redraw</button>
+<div class="content-holder">
+
+  <h4>{{messages[0]?.date.toISOString()}}</h4>
+  <figure id="scatter"></figure>
+  <div class="controls">
+    <button class="button is-warning" (click)="redraw()">Force Redraw</button>
+  </div>
 </div>
-<!-- <div class="message">
+  <!-- <div class="message">
   <p *ngFor="let message of messages; let i = index;">
     Topic: {{message.topic}}| Data:{{message.data}}| Date: {{message.date | date:'yyyy-MM-dd HH:mm'}}
     Topic: {{message.topic}}| Data:{{message.data}}| Date: {{message.date.toDateString()}}

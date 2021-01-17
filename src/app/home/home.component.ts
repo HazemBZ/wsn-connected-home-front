@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import { schemeBrBG } from 'd3';
 import { CommunicationService } from '../communication.service';
 import { Message } from '../models/message.model';
 import * as icons from '@fortawesome/free-solid-svg-icons';
@@ -44,7 +43,7 @@ export class HomeComponent implements OnInit {
       this.save(event.data)
     }
 
-    // this.createSvg();
+    this.createSvg();
     // this.drawScatter();
     setInterval(()=>{this.redraw()},1000)
   }

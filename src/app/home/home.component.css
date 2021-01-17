@@ -5,11 +5,30 @@
   justify-content: center;
   width: 50%;
   max-width: 400px;
-  margin: 50px 50px;
+  margin: 50px auto;
 
 }
 
 .button {
   /* margin-right: 50px; */
   width: 100%;
+}
+
+
+.active {
+  color:#6be109;
+}
+
+.content-holder {
+  width: 80%;
+  height: 50%;
+  margin: 100px auto;
+}
+
+figure {
+  width: 750px;
+}
+
+svg,figure {
+  margin: 0 auto;
 }

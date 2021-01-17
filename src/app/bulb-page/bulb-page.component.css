@@ -21,3 +21,13 @@
   /* margin-right: 50px; */
   width: 100%;
 }
+
+.active {
+  color:#ffdb4a;
+}
+
+.content-holder {
+  width: 80%;
+  height: 50%;
+  margin: 150px auto;
+}
