@@ -91,10 +91,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     d3.select('figure#scatter').select('svg').remove()
     this.svg = d3.select('figure#scatter')
     .append('svg')
+  //   .attr("preserveAspectRatio", "xMinYMin meet")
+  // .attr("viewBox", "0 0 300 300")
     .attr('width', this.width + (this.margin * 2))
     .attr('height', this.height + (this.margin * 2))
     .append('g')
     .attr('transform', "translate(" + this.margin + ',' + this.margin + ")")
+    // .classed('svg-content',true)
 
     // this.svg = d3.select("figure#bar")
     // .append("svg")
