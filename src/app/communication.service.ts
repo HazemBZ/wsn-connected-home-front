@@ -8,5 +8,7 @@ const ENDPOINT = "ws://192.168.1.13:8000/";
 })
 export class CommunicationService {
   public socket = new WebSocket(ENDPOINT);
+  public firstTempRegisteration = true;
+  public schedule = null;
   constructor() { }
 }

@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 import { CommunicationService } from '../communication.service';
 import { Message } from '../models/message.model';
 import * as icons from '@fortawesome/free-solid-svg-icons';
 
-const MAX_QEUEU = 60;
-
+const MAX_QEUEU = 60; // number of messages
+const REFRESH_PERIOD= 3000; // ms
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public bulb = icons.faLightbulb;
   public temp = icons.faTemperatureHigh;
 
@@ -32,20 +32,27 @@ export class HomeComponent implements OnInit {
   constructor(private comService:CommunicationService) { }
 
   ngOnInit(): void {
-    this.comService.socket.onopen = (event)=>{
-      console.log("Connection established")
-      this.comService.socket.send("Hello from angular client");
-      this.send("Eat bananas")
-    }
+    if(true){
+      this.comService.firstTempRegisteration = false;
+      this.comService.socket.onopen = (event)=>{
+        console.log("Connection established")
+        this.comService.socket.send("Hello from angular client");
+        this.send("Eat bananas")
+      }
 
-    this.comService.socket.onmessage = (event)=>{
-      console.log(`[message] received from server: ${event.data}`);
-      this.save(event.data)
+      this.comService.socket.onmessage = (event)=>{
+        console.log(`[message] received from server: ${event.data}`);
+        this.save(event.data)
+      }
     }
 
     this.createSvg(); // empty svg to counter empty content rendering
     // this.drawScatter();
-    setInterval(()=>{this.redraw()},1000)
+    this.comService.schedule = setInterval(()=>{this.redraw()},1000)
+  }
+
+  ngOnDestroy():void {
+    if (this.comService.schedule) clearInterval( this.comService.schedule);
   }
 
   send(message){
@@ -68,7 +75,7 @@ export class HomeComponent implements OnInit {
 
   checkTime(message:Message){
     let minute = message.date.getMinutes();
-    if( minute != this.lastMinute){
+    if( minute !== this.lastMinute){
       this.lastMinute = minute;
       this.messages = [];
     }

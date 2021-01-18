@@ -18,7 +18,7 @@
 
 <div class="content-holder">
 
-  <h4>{{messages[0]?.date.toISOString()}}</h4>
+  <h4 class="time-indicator">{{messages[0]?.date.toISOString()}}</h4>
   <figure id="scatter"></figure>
   <div class="controls">
     <button class="button is-warning" (click)="redraw()">Force Redraw</button>
